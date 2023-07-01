@@ -1,13 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --blue-color: #91d7f2a3;
+  --text-faded: #00000074;
+  --background-color: #ffffff62;
+  --foreground-color: #ffffff9b;
+  --dark-yellow-color: #D98B2B;
+  --black-color: #000000;
+}
+
+* {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    transition: 0.5s;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  background-image: linear-gradient(0deg, rgba(39, 159, 233, 0.634), rgba(230, 105, 249, 0.035));
+  line-height: 1;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* body,
+html {
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(0deg, rgba(39, 159, 233, 0.634), rgba(230, 105, 249, 0.035)), url('');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+} */
+
+p {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
 }
