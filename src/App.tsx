@@ -1,23 +1,31 @@
 import React from 'react';
 import skybackground from './img/sky-background-2.jpg';
 import './App.css';
+import SearchCity from './components/search/search';
 
 function App() {
+
+    const handleOnSearchChange = (searchData: any) =>{
+        console.log(`Search Data from APP= ${searchData}`);
+        
+    }
     return (
 
         <section style={{ backgroundImage: `url(${skybackground})` }} className='h-screen flex items-center justify-center flex-col'>
 
-            <div className='w-9/12 h-6/12 flex flex-col justify-around place-self-center rounded-xl bg-background-color'>
+            <div className='w-9/12 h-6/12 flex flex-col justify-around place-self-center rounded-xl bg-background-color max-w-md'>
 
                 <div className='w-full h-6/12 flex flex-col justify-center place-self-center bg-foreground-color rounded-t-xl text-center rounded-3xl shadow-bottomOnly'>
 
-                    <div className='bg-foreground-color rounded-t-2xl text-xl'>
-                        <form action="/" method="post">
-                            <input className='h-9 w-4/5 rounded-t-lg' type="search" name="search" id="search" />
-                            <button className='h-15 w-1/5' type="submit">Search</button>
-                        </form>
-
-                    </div>
+                <div className='bg-foreground-color rounded-t-2xl text-xl'>
+                    <form action="/" method="post">
+                        <SearchCity onSearchChange={handleOnSearchChange} />
+                        <input className='h-9 w-4/5 rounded-t-lg' type="search" name="search" id="search"/>
+                        <button className='h-15 w-1/5' type="submit">Search</button>
+                    </form>
+                </div>
+                    
+                    
                     <div className='pt-8 pb-3'>
                         <p className="font-bold text-2xl">Antwerpen</p>
                         <p className='text-text-faded text-xl'>Saturday, 23-06-2023</p>
