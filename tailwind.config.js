@@ -15,6 +15,13 @@ module.exports = {
         inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
         none: 'none',
     },
+    minHeight: {
+      '0': '0',
+      '20': '20px',
+      '30': '30px',
+      '3/4': '75%',
+      'full': '100%',
+     },
     extend: {
       screens: {
         short: { raw: '(max-height: 650px)' },
