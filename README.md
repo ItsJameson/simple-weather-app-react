@@ -4,6 +4,7 @@ The goal with this project is to build the same weather app I made [here](https:
 I also took this opportunity to learn and use tailwind-css.
 
 **Uses:** \
+WeatherAPI.com\
 React \
 Tailwind css \
 Typescript\
