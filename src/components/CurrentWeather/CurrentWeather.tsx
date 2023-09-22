@@ -1,45 +1,49 @@
 import React, { useState } from "react";
-import "../../App.css";
+import "../App/App.css";
 import { Weather } from "../../types";
 import skybackground from "../../img/sky-background.jpg";
-import { GetForcast } from "../forecast/Forecast";
-import { GetDayOfWeek } from "../dayOfWeek/DayOfWeek";
+import { GetForcast } from "../Forecast/Forecast";
+import { GetDayOfWeek } from "../DayOfWeek/DayOfWeek";
 import { fetchWeatherData } from "../../api/fetchWeatherData";
 
-function WeatherFunction (){
+function WeatherFunction() {
   const [city, setCity] = useState<string>("");
   const [weatherData, setWeatherData] = useState<Weather | null>(null);
 
-  const onLoad = async () =>{
+  const onLoad = async () => {
     if (weatherData === null) {
       setWeatherData(await fetchWeatherData("Brussels"));
     }
-  }
+  };
   onLoad();
 
-  const handleCityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCityChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setCity(event.target.value);
   };
 
-  const fetchData = async () => {
-      let tempData = weatherData;
-      let apiData = await fetchWeatherData(city);
-      if (apiData != null){
-        setWeatherData(apiData);
-      }
-      else{
-        setWeatherData(tempData);
-      }
+  const fetchData = async (): Promise<void> => {
+    let tempData = weatherData;
+    let apiData = await fetchWeatherData(city);
+    if (apiData != null) {
+      setWeatherData(apiData);
+    } else {
+      setWeatherData(tempData);
+    }
   };
 
   return (
     <section
       style={{ backgroundImage: `url(${skybackground})` }}
-      className="h-screen flex items-center justify-between flex-col"
+      className="h-screen flex items-center justify-between flex-col flex-wrap"
     >
       <header></header>
 
-      <div id="main" className="w-3/4 h-auto flex flex-col justify-center text-center rounded-3xl shadow-bottomOnly max-w-lg mx-8 bg-background-color">
+      <div
+        id="main"
+        className="w-3/4 h-auto flex flex-col justify-center text-center rounded-3xl shadow-bottomOnly max-w-lg mx-8 bg-background-color"
+      >
         {/* Main */}
 
         <div className="h-auto w-full min-h-30 rounded-t-3xl bg-foreground-color">
@@ -61,7 +65,7 @@ function WeatherFunction (){
         {weatherData && (
           <div className="w-full h-full flex flex-col justify-around place-self-center rounded-3xl">
             <div className="bg-foreground-color rounded-b-3xl flex flex-col justify-items-center">
-              <div className="pt-8 pb-3">
+              <div id="temp-wrapper" className="pt-8 pb-3">
                 <p className="font-bold text-3xl">
                   {weatherData.location.name},<br />
                   {weatherData.location.country}
@@ -75,7 +79,7 @@ function WeatherFunction (){
                   {weatherData.location.localtime.substring(5, 7)}-
                   {weatherData.location.localtime.substring(0, 4)}
                 </p>
-                <h2 className="text-8xl tracking-tight py-4">
+                <h2 id="h2-temp" className="text-8xl tracking-tight py-4">
                   {weatherData.current.temp_c}
                   <span>
                     &deg;
@@ -91,7 +95,7 @@ function WeatherFunction (){
                 />
                 <p>{weatherData.current.condition.text}</p>
               </div>
-              <div className="bg-pale-blue-color rounded-3xl w-11/12 place-self-center mb-6 mt-4 p-3 shadow-lg">
+              <div id="day-props" className="bg-pale-blue-color rounded-3xl w-11/12 place-self-center mb-6 mt-4 p-3 shadow-lg">
                 <div className="flex flex-row gap-4 justify-center py-px">
                   <p>
                     H:{" "}

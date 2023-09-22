@@ -1,6 +1,7 @@
 import { DAYS } from "../../constants/days";
+import { Forecast } from "../../types";
 
-const GetDayOfWeek: React.FC<any> = ({forecastday}) =>{
+function GetDayOfWeek ({forecastday}:Forecast): JSX.Element {
     let dayOfWeek: string[] = [];
     dayOfWeek = forecastday.map(
       (day: any) => DAYS[new Date(day.date).getDay()]

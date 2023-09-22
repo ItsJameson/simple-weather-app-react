@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import "./App.css";
-import WeatherFunction from "./components/current-weather/CurrentWeather";
+import WeatherFunction from "../CurrentWeather/CurrentWeather";
 
 function App() {
   useEffect(() =>{
