@@ -1,13 +1,14 @@
 import { Forecast } from "../../types";
 import { DAYS } from "../../constants/days";
 
-function GetForcast({ forecastday }: Forecast): JSX.Element {
+export default function GetForcast({ forecastday }: Forecast): JSX.Element {
   let dayOfWeek: string[] = [];
 
   dayOfWeek = forecastday.map((day) => DAYS[new Date(day.date).getDay()]);
 
   const itemElements = forecastday.map((item, index) => (
-    <div id="forecast-item"
+    <div
+      id="forecast-item"
       key={index}
       className="bg-pale-blue-color py-4 px-4 rounded-full h-full shadow-lg"
     >
@@ -27,10 +28,11 @@ function GetForcast({ forecastday }: Forecast): JSX.Element {
   ));
 
   return (
-    <div id="forecast" className="h-full w-full flex flex-row justify-evenly place-self-center py-8">
+    <div
+      id="forecast"
+      className="h-full w-full flex flex-row justify-evenly place-self-center py-8"
+    >
       {itemElements}
     </div>
   );
 }
-
-export { GetForcast };

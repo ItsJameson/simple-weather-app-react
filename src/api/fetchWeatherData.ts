@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Weather } from "../types";
+const key = "";
 
-
-const fetchWeatherData = async (city: string): Promise<Weather | null> =>  {
+export const fetchWeatherData = async (city: string): Promise<Weather | null> =>  {
     let response: any = null;
     try {
       response = await axios.get<Weather>(
@@ -15,5 +15,3 @@ const fetchWeatherData = async (city: string): Promise<Weather | null> =>  {
     }
     return response.data;
   };
-
-  export {fetchWeatherData};

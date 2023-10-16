@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App/App.css";
 import { Weather } from "../../types";
 import skybackground from "../../img/sky-background.jpg";
-import { GetForcast } from "../Forecast/Forecast";
-import { GetDayOfWeek } from "../DayOfWeek/DayOfWeek";
+import GetForcast from "../Forecast/Forecast";
 import { fetchWeatherData } from "../../api/fetchWeatherData";
+import GetDayOfWeek from "../DayOfWeek/DayOfWeek";
 
 function WeatherFunction() {
   const [city, setCity] = useState<string>("");
   const [weatherData, setWeatherData] = useState<Weather | null>(null);
 
-  const onLoad = async () => {
-    if (weatherData === null) {
-      setWeatherData(await fetchWeatherData("Brussels"));
-    }
-  };
-  onLoad();
+  useEffect(() => {
+    fetchWeatherData("Brussels").then((response) => setWeatherData(response));
+  }, []);
 
   const handleCityChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -62,7 +59,7 @@ function WeatherFunction() {
           </button>
         </div>
 
-        {weatherData && (
+        {weatherData ? (
           <div className="w-full h-full flex flex-col justify-around place-self-center rounded-3xl">
             <div className="bg-foreground-color rounded-b-3xl flex flex-col justify-items-center">
               <div id="temp-wrapper" className="pt-8 pb-3">
@@ -95,7 +92,10 @@ function WeatherFunction() {
                 />
                 <p>{weatherData.current.condition.text}</p>
               </div>
-              <div id="day-props" className="bg-pale-blue-color rounded-3xl w-11/12 place-self-center mb-6 mt-4 p-3 shadow-lg">
+              <div
+                id="day-props"
+                className="bg-pale-blue-color rounded-3xl w-11/12 place-self-center mb-6 mt-4 p-3 shadow-lg"
+              >
                 <div className="flex flex-row gap-4 justify-center py-px">
                   <p>
                     H:{" "}
@@ -125,7 +125,7 @@ function WeatherFunction() {
             </div>
             <GetForcast forecastday={weatherData.forecast.forecastday} />
           </div>
-        )}
+        ) : <p>Loading...</p>}
       </div>
       <footer className="text-text-faded p-2">&copy; 2023 James Leipert</footer>
     </section>
